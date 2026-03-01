@@ -5,7 +5,7 @@ import nodemailer from 'nodemailer';
 export async function POST(request: Request) {
     try {
         const data = await request.json();
-        const { trialSessionId, participantName, birthDate, grade, phoneNumber, email, preferredCampus } = data;
+        const { trialSessionId, participantName, birthDate, grade, phoneNumber, email, preferredCampus, desiredCourse, notes } = data;
 
         if (!trialSessionId || !participantName || !email || !preferredCampus) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -34,6 +34,8 @@ export async function POST(request: Request) {
             phoneNumber,
             email,
             preferredCampus,
+            desiredCourse,
+            notes,
             createdAt: new Date().toISOString()
         };
 
@@ -71,8 +73,10 @@ export async function POST(request: Request) {
 参加者: ${participantName} (${grade})
 生年月日: ${birthDate}
 希望校舎: ${preferredCampus}
+希望コース: ${desiredCourse}
 電話番号: ${phoneNumber}
 メール: ${email}
+その他: ${notes}
       `.trim()
         };
 
@@ -89,6 +93,7 @@ ${participantName} 様
 ■予約内容
 日時: ${sessionDateStr}
 希望校舎: ${preferredCampus}
+希望コース: ${desiredCourse}
 
 ■会場
 豊洲セイルパーク 2F TOYONOMA

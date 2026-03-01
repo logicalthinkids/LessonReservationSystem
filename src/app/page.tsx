@@ -36,6 +36,8 @@ export default function BookingPage() {
         phoneNumber: "",
         email: "",
         preferredCampus: "",
+        desiredCourse: "",
+        notes: "",
     });
 
     useEffect(() => {
@@ -226,6 +228,29 @@ export default function BookingPage() {
                             <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "0.5rem" }}>
                                 ※ご検討されている校舎の選択をお願いいたします。
                             </p>
+                        </div>
+                        <div className="form-group">
+                            <label>体験希望コース</label>
+                            <select
+                                required
+                                value={formData.desiredCourse}
+                                onChange={e => setFormData({ ...formData, desiredCourse: e.target.value })}
+                            >
+                                <option value="">選択してください</option>
+                                <option value="ビジュアルプログラミング導入コース(マインクラフト)">ビジュアルプログラミング導入コース(マインクラフト)</option>
+                                <option value="ビジュアルプログラミングメインコース(QUREO)">ビジュアルプログラミングメインコース(QUREO)</option>
+                                <option value="テキストプログラミングコース(QUREO)">テキストプログラミングコース(QUREO)</option>
+                                <option value="生成AIコース">生成AIコース</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label>その他(質問等)</label>
+                            <textarea
+                                placeholder="ご質問や伝達事項があればご記入ください"
+                                value={formData.notes}
+                                onChange={e => setFormData({ ...formData, notes: e.target.value })}
+                                style={{ width: "100%", padding: "0.75rem", borderRadius: "8px", border: "1px solid var(--border)", minHeight: "100px" }}
+                            />
                         </div>
                         {error && <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>}
                         <button type="submit" className="btn btn-primary" style={{ width: "100%", padding: "1.25rem" }} disabled={submitting}>

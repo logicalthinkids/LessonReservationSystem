@@ -19,6 +19,8 @@ interface Reservation {
     email: string;
     createdAt: string;
     preferredCampus: string;
+    desiredCourse: string;
+    notes: string;
     trialSession?: Session;
 }
 
@@ -208,7 +210,8 @@ export default function AdminPage() {
                                         <th style={{ whiteSpace: "nowrap" }}>学年</th>
                                         <th style={{ whiteSpace: "nowrap" }}>日程</th>
                                         <th>希望校舎</th>
-                                        <th>連絡先</th>
+                                        <th>希望コース</th>
+                                        <th>連絡先・その他</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -226,9 +229,15 @@ export default function AdminPage() {
                                                     {r.preferredCampus}
                                                 </span>
                                             </td>
+                                            <td style={{ fontSize: "0.85rem" }}>{r.desiredCourse}</td>
                                             <td>
                                                 <div style={{ fontSize: "0.8rem" }}>{r.phoneNumber}</div>
                                                 <div style={{ fontSize: "0.8rem", color: "var(--primary)" }}>{r.email}</div>
+                                                {r.notes && (
+                                                    <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "0.5rem", borderTop: "1px solid #eee", paddingTop: "0.5rem" }}>
+                                                        {r.notes}
+                                                    </div>
+                                                )}
                                             </td>
                                         </tr>
                                     ))}

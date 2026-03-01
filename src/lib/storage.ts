@@ -15,6 +15,8 @@ export interface Reservation {
     email: string;
     createdAt: string;
     preferredCampus: string;
+    desiredCourse: string;
+    notes: string;
 }
 
 const GAS_URL = process.env.GAS_URL;
@@ -64,7 +66,9 @@ export const addReservation = async (reservation: Reservation) => {
                 reservation.phoneNumber,
                 reservation.email,
                 reservation.createdAt,
-                reservation.preferredCampus
+                reservation.preferredCampus,
+                reservation.desiredCourse,
+                reservation.notes
             ]
         })
     });
