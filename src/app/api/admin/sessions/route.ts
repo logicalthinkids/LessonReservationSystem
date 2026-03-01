@@ -6,7 +6,8 @@ export async function GET() {
         const sessions = await readSessions();
         return NextResponse.json(sessions);
     } catch (error) {
-        return NextResponse.json({ error: "Failed to fetch sessions" }, { status: 500 });
+        console.error("Session fetch error:", error);
+        return NextResponse.json([]);
     }
 }
 
@@ -28,8 +29,8 @@ export async function POST(request: Request) {
 
         return NextResponse.json(newSession);
     } catch (error) {
-        console.error("Session creation error:", error);
-        return NextResponse.json({ error: "Failed to create session" }, { status: 500 });
+        console.error("Reservation fetch error:", error);
+        return NextResponse.json([]);
     }
 }
 

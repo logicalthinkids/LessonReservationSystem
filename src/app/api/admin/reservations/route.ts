@@ -17,6 +17,6 @@ export async function GET() {
         return NextResponse.json(joinedReservations);
     } catch (error) {
         console.error("Reservation fetch error:", error);
-        return NextResponse.json({ error: "Failed to fetch reservations" }, { status: 500 });
+        return NextResponse.json([]);
     }
 }
